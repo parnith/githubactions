@@ -1,19 +1,25 @@
-name: upper-build
+name: Go Tests
 
 on:
   push: 
-    branches: [ "main" ]
+    paths:
+      - ".github/workflows/upperbuild.yml"
+      - "upper/**"
 jobs:
   build:
+    name: upper-build-go
     runs-on: ubuntu-latest
     steps:
+      - name: Check the files path
       - run:  pwd && ls -al
       - uses: actions/checkout@v6
       - run:  pwd && ls -al
-      - name: Run script
-        run: echo Hello World!!
-      - run: go version
-      - uses: actions/setup-go@v5
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
-      - run: go version     
+          go-version: "1.21"
+
+      - name: Run tests
+        working-directory: upper
+        run: go test          
