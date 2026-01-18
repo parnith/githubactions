@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check the files path
-      - run:  pwd && ls -al
+        run:  pwd && ls -al
       - uses: actions/checkout@v6
       - run:  pwd && ls -al
 
